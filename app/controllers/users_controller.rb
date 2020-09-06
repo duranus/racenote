@@ -10,6 +10,7 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
+    @user = User.find_by(id: session[:user_id])
   end
 
   # GET /users/new
@@ -59,6 +60,30 @@ class UsersController < ApplicationController
       format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def login_form
+
+  end
+
+  def login
+    @user = User.find_by(email: params[:email])
+    if @user && @user.authenticate(params[:password])
+      session[:user_id] = @user.id
+      flash[:notice] = "ログインしました"
+      redirect_to("/users/#{@user.id}/")
+    else
+      @email = params[:email]
+      @password = params[:password]
+      @error_message = "メールアドレスまたはパスワードが間違っています"
+      render("users/login_form")
+    end
+  end
+
+  def logout
+    session[:user_id] = nil
+    flash[:notice] = "ログアウトしました"
+    redirect_to("/login")
   end
 
   private

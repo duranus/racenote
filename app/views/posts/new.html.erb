@@ -1,0 +1,37 @@
+<% @post.errors.full_messages.each do |message| %>
+  <p><%= message %></p>
+<% end %>
+
+<%= form_tag("/posts/create") do %>
+
+<p>
+  日付<input type="date" name="date" value="">
+  <select name="race">
+  <option value="1">1</option>
+  <option value="2">2</option>
+  <option value="3">3</option>
+  <option value="4">4</option>
+  <option value="5">5</option>
+  <option value="6">6</option>
+  <option value="7">7</option>
+  <option value="8">8</option>
+  <option value="9">9</option>
+  <option value="10">10</option>
+  <option value="11">11</option>
+  <option value="12">12</option>
+  </select>R
+</p>
+<p>
+  馬名<input type="text" name="horse">
+</p>
+<p>
+  コメント1<input type="text" name="comment1">
+  コメント2<input type="text" name="comment2">
+  コメント3<input type="text" name="comment3">
+</p>
+<p>
+  <input type="submit" value="作成">
+  <button type="button" onclick="history.back()">戻る</button>
+</p>
+
+<% end %>

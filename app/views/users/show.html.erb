@@ -1,14 +1,23 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Email:</strong>
-  <%= @user.email %>
+  <strong>User:</strong>
+  <%= @user.email %>|
+  <%= link_to '新規投稿', ("/posts/new") %>
 </p>
 
-<p>
-  <strong>Password digest:</strong>
-  <%= @user.password_digest %>
-</p>
+<% @user.posts.each do |post| %>
+  <p>
+    <%= post.date %>
+    <%= post.race %>R
+    <strong><%= post.horse %></strong>
+    <%= post.comment1 %>
+    <%= post.comment2 %>
+    <%= post.comment3 %>
+    <%= link_to("編集","/posts/#{post.id}/edit")%>
+  </p>
+<% end %>
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<%= link_to 'Edit', ("users/login_form") %> |
+<%= link_to 'Back', ("users/login_form") %> |
+<%= link_to("Logout", "/logout", {method:"post"})%>
