@@ -5,5 +5,6 @@ class Post < ApplicationRecord
   validates :horse, {presence: true}
   validates :comment1, {presence: true}
   validates :user_id, {presence: true}
-  
+  validates :track, {presence: true}
+
 end

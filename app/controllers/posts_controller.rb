@@ -9,6 +9,7 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(date:params[:date],
+                     track:params[:track],
                      race:params[:race],
                      horse:params[:horse],
                      comment1:params[:comment1],
@@ -30,6 +31,7 @@ class PostsController < ApplicationController
   def update
     @post = Post.find_by(id: params[:id])
     @post.date = params[:date]
+    @post.track = params[:track]
     @post.race = params[:race]
     @post.horse = params[:horse]
     @post.comment1 = params[:comment1]
