@@ -1,5 +1,14 @@
-<h1>New User</h1>
+<h1>新規ユーザ作成</h1>
 
-<%= render 'form', user: @user %>
+<!-- ユーザー登録失敗時のエラーメッセージ -->
+<% @user.errors.full_messages.each do |message| %>
+  <%= message %>
+<% end %>
 
-<%= link_to 'Back', users_path %>
+<%= form_tag("/users/create") do  %>
+  <p>メールアドレス</p>
+  <input name="email" value="<%= @user.email %>">
+  <p>パスワード</p>
+  <input name="password" value="<%= @user.password %>">
+  <input type="submit" value="新規登録">
+<% end %>
